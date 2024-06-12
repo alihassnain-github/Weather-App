@@ -6,3 +6,26 @@
 * {
     font-family: poppinsRegular;
 }
+
+body {
+    background-color: #F5F5FA;
+}
+
+.search-icon {
+    right: 12px;
+    transform: translateY(-50%);
+}
+
+.weather-info {
+    box-shadow: -10px -10px 30px 0px #ffffff, 10px 10px 30px 0px #1d0dca17;
+}
+
+select {
+    width: 70px !important;
+}
+
+@media (min-width: 768px) {
+    .forecast-cont {
+        flex-wrap: nowrap;
+    }
+}
