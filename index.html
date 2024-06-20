@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="./asserts/weather-icon.png" type="image/x-icon">
     <!-- remix icons cdn -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- swiper css cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- bootstrap css file -->
     <link rel="stylesheet" href="./CSS/bootstrap.css">
     <link rel="stylesheet" href="./CSS/main.css">
@@ -18,67 +20,72 @@
     <div class="container-fluid">
         <div class="container">
             <div class="search-box mt-3 mb-5 position-relative">
-                <input type="text" class="form-control rounded-5 py-2" placeholder="Search by city">
+                <input type="text" id="city-input" class="form-control rounded-5 py-2" placeholder="Search by city">
                 <i role="button" id="search-btn" class="ri-search-2-line search-icon fs-4 position-absolute top-50"></i>
+                <small id="error" class="text-danger d-none position-absolute top-60 start-0">City not found please
+                    enter valid
+                    city name.</small>
             </div>
             <main class="weather-details">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h6 class="fw-bold">Karachi, Pakistan</h6>
-                    <select name="temperature" class="form-select ms-auto">
-                        <option selected value="celsius">°C</option>
-                        <option value="fahrenheit">°F</option>
+                    <h6 id="place" class="fw-bold"></h6>
+                    <select name="temperature" class="form-select ms-auto" id="unit-select">
+                        <option value="c">°C</option>
+                        <option selected value="f">°F</option>
                     </select>
                 </div>
                 <div class="row my-2">
-                    <div class="col-md-4 weather-info py-2 px-3 rounded-3">
-                        <h5>Current weather</h5>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <span>Wind <i class="ri-windy-line"></i></span>
-                            </div>
-                            <div>
-                                <span>Humidity <i class="ri-drop-line"></i></span>
-                            </div>
-                        </div>
+                    <div class="col-md-4 py-2 px-3 rounded-3" id="weather-info">
+
                     </div>
                 </div>
-                <h6 class="fw-bold mt-5">03 DAY FORECAST</h6>
-                <div class="row row-cols-md-3 row-cols-sm-1 my-2 forecast-cont">
-                    <div class="col col-12 border rounded-2 m-1">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <span>Wind <i class="ri-windy-line"></i></span>
-                            </div>
-                            <div>
-                                <span>Humidity <i class="ri-drop-line"></i></span>
-                            </div>
+                <h6 class="fw-bold mt-5">10 DAY FORECAST</h6>
+
+                <!-- swiper -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
+                        </div>
+                        <div class="swiper-slide border rounded-2 p-2">
+
                         </div>
                     </div>
-                    <div class="col col-12 border rounded-2 m-1">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <span>Wind <i class="ri-windy-line"></i></span>
-                            </div>
-                            <div>
-                                <span>Humidity <i class="ri-drop-line"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-12 border rounded-2 m-1">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <span>Wind <i class="ri-windy-line"></i></span>
-                            </div>
-                            <div>
-                                <span>Humidity <i class="ri-drop-line"></i></span>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </main>
         </div>
     </div>
 
+    <!-- swiper js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./JS/app.js"></script>
 </body>
 
