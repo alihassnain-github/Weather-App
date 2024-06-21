@@ -17,6 +17,11 @@
 
 <body>
 
+    <!-- loading page -->
+    <div class="loading position-absolute top-0 start-0 z-2 d-none">
+        <div class="loader"></div>
+    </div>
+
     <div class="container-fluid">
         <div class="container">
             <div class="search-box mt-3 mb-5 position-relative">
@@ -26,7 +31,7 @@
                     enter valid
                     city name.</small>
             </div>
-            <main class="weather-details">
+            <main class="d-none weather-details">
                 <div class="d-flex justify-content-between align-items-center">
                     <h6 id="place" class="fw-bold"></h6>
                     <select name="temperature" class="form-select ms-auto" id="unit-select">
@@ -34,8 +39,8 @@
                         <option selected value="f">°F</option>
                     </select>
                 </div>
-                <div class="row my-2">
-                    <div class="col-md-4 py-2 px-3 rounded-3" id="weather-info">
+                <div class="row mt-3 mb-2">
+                    <div class="col-md-6 col-lg-4 py-2 px-3 rounded-3" id="weather-info">
 
                     </div>
                 </div>

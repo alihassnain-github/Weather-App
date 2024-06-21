@@ -1,8 +1,22 @@
 // Initialize Swiper
 var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
+    slidesPerView: 4,
     spaceBetween: 10,
     freeMode: false,
+    breakpoints: {
+        0: {
+            slidesPerView: 1
+        },
+        576: {
+            slidesPerView: 2
+        },
+        768: {
+            slidesPerView: 3
+        },
+        1400: {
+            slidesPerView: 4
+        }
+    }
 });
 
 // display weather
@@ -14,6 +28,8 @@ const errorTxt = document.querySelector("#error");
 const weatherInfo = document.querySelector("#weather-info");
 const place = document.querySelector("#place");
 const forecast = document.querySelectorAll(".swiper-slide");
+const loading = document.querySelector(".loading");
+const main = document.querySelector(".weather-details");
 let count = 0;
 
 unitSelect.addEventListener("change", () => {
@@ -30,30 +46,44 @@ async function weatherDetails(city) {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '019cc03732msh35959c3707eca24p1fae6fjsnda10f7d58814',
+            'x-rapidapi-key': '6527884dc0msh14af888edf8ea4fp1ac696jsn6d435af3829f',
             'x-rapidapi-host': 'yahoo-weather5.p.rapidapi.com'
         }
     };
 
     try {
+        loading.classList.remove("d-none");
+        main.classList.add("d-none");
         const response = await fetch(url, options);
         const data = await response.json();
         if (!response.ok) {
+            loading.classList.add("d-none");
+            main.classList.remove("d-none");
             errorTxt.classList.add("d-block");
             errorTxt.classList.remove("d-none");
         }
         else {
+            loading.classList.add("d-none");
+            main.classList.remove("d-none");
             const { current_observation, location, forecasts } = data;
             errorTxt.classList.add("d-none");
             errorTxt.classList.remove("d-block");
             place.innerHTML = `${location.city}, ${location.country}`;
             weatherInfo.innerHTML = `
             <h5>Current weather</h5>
-            <div class="d-flex align-items-start">
-                <h1 class="lh-1">${current_observation.condition.temperature}</h1>
-                <sup class="mt-3 fs-6">${unitSelect.options[unitSelect.selectedIndex].innerHTML}</sup>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="d-flex align-items-start">
+                        <h1 class="lh-1">${current_observation.condition.temperature}</h1>
+                        <sup class="mt-3 fs-6">${unitSelect.options[unitSelect.selectedIndex].innerHTML}</sup>
+                    </div>
+                    <h6 class="mb-4">${current_observation.condition.text}</h6>
+                </div>
+                <div>
+                    <span class="small">Visibility</span>
+                    <p class="small">${current_observation.atmosphere.visibility} mi</p>
+                </div>
             </div>
-            <h6 class="mb-4">${current_observation.condition.text}</h6>
             <div class="d-flex justify-content-between">
                 <div>
                     <span class="small">Wind <i class="ri-windy-line"></i></span>
@@ -62,6 +92,10 @@ async function weatherDetails(city) {
                 <div>
                     <span class="small">Humidity <i class="ri-drop-line"></i></span>
                     <p class="small">${current_observation.atmosphere.humidity} %</p>
+                </div>
+                <div>
+                    <span class="small">Pressure</span>
+                    <p class="small">${current_observation.atmosphere.pressure} mb</p>
                 </div>
             </div>
             `;
@@ -83,7 +117,6 @@ async function weatherDetails(city) {
             });
         }
         count = 0;
-        console.log(data);
     } catch (error) {
         console.error(error);
     }
