@@ -31,10 +31,27 @@ const forecast = document.querySelectorAll(".swiper-slide");
 const loading = document.querySelector(".loading");
 const main = document.querySelector(".weather-details");
 let count = 0;
+let timeString = "";
+// show current time
+function showTime() {
+    const dateObj = new Date();
+    let hour = dateObj.getHours();
+    let mins = dateObj.getMinutes();
+    let period = "AM";
+    if (hour >= 12) {
+        hour = hour - 12;
+        period = "PM";
+    }
+    timeString = `${hour.toString().padStart(2, 0)}:${mins.toString().padStart(2, 0)} ${period}`;
+};
 
 unitSelect.addEventListener("change", () => {
     unit = unitSelect.options[unitSelect.selectedIndex].value;
-    weatherDetails(cityName.value);
+    if (cityName.value === "") {
+        weatherDetails("Karachi");
+    } else {
+        weatherDetails(cityName.value);
+    }
 });
 
 searchbtn.addEventListener("click", () => {
@@ -56,6 +73,7 @@ async function weatherDetails(city) {
         main.classList.add("d-none");
         const response = await fetch(url, options);
         const data = await response.json();
+        console.log(data);
         if (!response.ok) {
             loading.classList.add("d-none");
             main.classList.remove("d-none");
@@ -69,8 +87,13 @@ async function weatherDetails(city) {
             errorTxt.classList.add("d-none");
             errorTxt.classList.remove("d-block");
             place.innerHTML = `${location.city}, ${location.country}`;
+            // showing the current time 
+            showTime();
             weatherInfo.innerHTML = `
-            <h5>Current weather</h5>
+            <div class="d-flex justify-content-between align-items-start">
+                <h5>Current weather</h5>
+                <p class="small m-0">${timeString}</p>
+            </div>
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <div class="d-flex align-items-start">
