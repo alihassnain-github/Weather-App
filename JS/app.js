@@ -59,11 +59,35 @@ searchbtn.addEventListener("click", () => {
 });
 
 async function weatherDetails(city) {
+    // const url = `https://yahoo-weather5.p.rapidapi.com/weather?location=${city}&format=json&u=${unit}`;
+    // const options = {
+    //     method: 'GET',
+    //     headers: {
+    //         'x-rapidapi-key': '6527884dc0msh14af888edf8ea4fp1ac696jsn6d435af3829f',
+    //         'x-rapidapi-host': 'yahoo-weather5.p.rapidapi.com'
+    //     }
+    // };
+    // const url = `https://yahoo-weather5.p.rapidapi.com/weather?location${city}&format=json&u=${unit}`;
+    // const options = {
+    //     method: 'GET',
+    //     headers: {
+    //         'x-rapidapi-key': '019cc03732msh35959c3707eca24p1fae6fjsnda10f7d58814',
+    //         'x-rapidapi-host': 'yahoo-weather5.p.rapidapi.com'
+    //     }
+    // };
+    // const url = `https://yahoo-weather5.p.rapidapi.com/weather?location=${city}&format=json&u=${unit}`;
+    // const options = {
+    //     method: 'GET',
+    //     headers: {
+    //         'x-rapidapi-key': '6527884dc0msh14af888edf8ea4fp1ac696jsn6d435af3829f',
+    //         'x-rapidapi-host': 'yahoo-weather5.p.rapidapi.com'
+    //     }
+    // };
     const url = `https://yahoo-weather5.p.rapidapi.com/weather?location=${city}&format=json&u=${unit}`;
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': '6527884dc0msh14af888edf8ea4fp1ac696jsn6d435af3829f',
+            'x-rapidapi-key': '4ad738607amshe86028eb9f5358ap13ab04jsncf6f7322c7e4',
             'x-rapidapi-host': 'yahoo-weather5.p.rapidapi.com'
         }
     };
@@ -73,7 +97,6 @@ async function weatherDetails(city) {
         main.classList.add("d-none");
         const response = await fetch(url, options);
         const data = await response.json();
-        console.log(data);
         if (!response.ok) {
             loading.classList.add("d-none");
             main.classList.remove("d-none");
